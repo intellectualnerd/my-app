@@ -5,7 +5,7 @@ import TileLayer from 'ol/layer/WebGLTile.js';
 const source = new GeoTIFF({
   sources: [
     {
-      url: "./cog/ndvi.tif",
+      url: "https://geotiff-to-cog.s3.amazonaws.com/ndvi.tif",
     },
   ],
 });
