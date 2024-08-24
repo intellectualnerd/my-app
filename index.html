@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Cloud Optimized GeoTIFF (COG)</title>
-  <link rel="stylesheet" href="node_modules/ol/ol.css">
-  <style>
-    .map {
-      width: 100%;
-      height: 400px;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <title>CesiumJS Custom Image Layer</title>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.92/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.92/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        img{
+          opacity: 0.5;
+        }
+    </style>
 </head>
-
 <body>
-  <div id="map" class="map"></div>
+    <div id="cesiumContainer"></div>
+    <script>
+        // Set your Cesium ion API key here
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3MzhiZWE3Zi1mMmNkLTQ0MjgtODQ5OC0yYWFiNDg3MWI3ZGQiLCJpZCI6MjM2NzI4LCJpYXQiOjE3MjQ1MDM3NDB9.MWlNZ-BGQjASH1pAO1jYTlcdWswSGpySCIdAZKtGWRM';
 
-  <script type="module" src="main.js"></script>
+        // Initialize Cesium Viewer
+        const viewer = new Cesium.Viewer('cesiumContainer');
+
+        // Define the image layer with your custom image
+        const customImageLayer = new Cesium.SingleTileImageryProvider({
+            url : './cog/earth.png', // Path to your custom image
+            rectangle : Cesium.Rectangle.fromDegrees(-0.84, -81.04, 163.15, 81.04) // Bounding box
+        });
+
+        // Add the custom image layer to the map
+        viewer.imageryLayers.addImageryProvider(customImageLayer);
+
+        // Optionally, adjust the view to fit the custom image
+        viewer.camera.setView({
+            destination : Cesium.Rectangle.fromDegrees(-0.84, -81.04, 163.15, 81.04)
+        });
+    </script>
 </body>
-
 </html>
