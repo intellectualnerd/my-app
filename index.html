@@ -11,9 +11,10 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
-        img{
-          opacity: 0.5;
+        img {
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -28,7 +29,7 @@
 
         // Define the image layer with your custom image
         const customImageLayer = new Cesium.SingleTileImageryProvider({
-            url : './cog/earth.png', // Path to your custom image
+            url : '/cog/earth.png', // Adjusted path for Vercel
             rectangle : Cesium.Rectangle.fromDegrees(-0.84, -81.04, 163.15, 81.04) // Bounding box
         });
 
